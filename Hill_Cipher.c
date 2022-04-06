@@ -13,22 +13,50 @@ void main() {
     getMsg();
     encryption();
     decryption();
-    printf("\n------------ END ------------\n");
+    printf("\n-------------- END ---------------\n");
 }
 
 void getMsg() {
-    int i, j;
-    char msg[4];
+    int i, j,cho,k=0;
+    char msg[4],str[10];
 
-    printf("Enter 3x3 inversible matrix (KEY):\n");
-    
-    for(i = 0; i < 3; i++){
-        for(j = 0; j < 3; j++) {
-            scanf("%f", &a[i][j]);
-            c[i][j] = a[i][j];
-        }
+    printf("Enter 3x3 Inversible Matrix (KEY):\n\n");
+    printf("Do you prefer entering it as a string or as a number?\n(1=String,2=Number):\t");
+    scanf("%d",&cho);
+    switch(cho){
+        case 1:
+            printf("Enter a 9 letter string :\n");
+            scanf("%9s",str);
+        
+            for(i=0;i<3;i++){
+                for(j=0;j<3;j++){
+                    a[i][j]=str[k] - 97;//It subtructs 97 from the character to convert it from ASCII to a number!
+                    c[i][j] = a[i][j]; //A copy of the matrix for the inversion
+                    k++;
+                }
+            }
+            
+            printf("----- Characters to ASCII -----\n");
+            for(i=0;i<3;i++){
+                for(j=0;j<3;j++){
+                    printf(" %f ",a[i][j]);
+                } 
+                printf("\n");
+            }
+            printf("---------------- ---------------");
+            break;
+            
+        case 2:
+            printf("Enter a 3x3 numeric matrix: \n");
+            for(i = 0; i < 3; i++){
+                for(j = 0; j < 3; j++) {
+                    scanf("%f", &a[i][j]);
+                    c[i][j] = a[i][j];
+                }
+            }
+            break;
     }
-
+    
     printf("\nEnter a 3 letter string (PLAINTEXT): ");
     scanf("%3s", msg);
     for(i = 0; i < 3; i++)
